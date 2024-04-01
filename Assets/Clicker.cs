@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
 public class Clicker : MonoBehaviour
 {
+    private ARRaycastManager raycastManager;
+    public GameObject Mole;
+    void awake(){
+        raycastManager = GetComponent<ARRaycastManager>();
+    }
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount >0)
         {
             Touch touch = Input.GetTouch(0);
-            Debug.Log("oui oui");
             if (touch.phase == TouchPhase.Began)
             {
                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
@@ -17,10 +22,11 @@ public class Clicker : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    // Check if the raycast hits this object
-                    if (hit.collider.gameObject == gameObject)
+                    
+                    if (hit.collider.gameObject.CompareTag("Mole"))
                     {
-                        Destroy(gameObject);
+                       Debug.Log("Mole was hit!");
+                        Destroy(hit.collider.gameObject);
                     }
 
                     // Draw a line to visualize the raycast

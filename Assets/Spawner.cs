@@ -41,12 +41,4 @@ public class Spawner : MonoBehaviour
             Destroy(Mole);
         }
     }
-
-    void OnDisable()
-    {
-        if (spawningCoroutine != null)
-        {
-            StopCoroutine(spawningCoroutine);
-        }
-    }
 }
