@@ -25,7 +25,7 @@ public class Clicker : MonoBehaviour
                     
                     if (hit.collider.gameObject.CompareTag("Mole"))
                     {
-                       Debug.Log("Mole was hit!");
+                       //Debug.Log("Mole was hit!");
                         Destroy(hit.collider.gameObject);
                     }
 
