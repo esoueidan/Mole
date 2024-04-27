@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject spherePrefab;
-    public int numSpheres = 10;
-    public float spawnRadius = 5f;
+    public GameObject MolePrefab;
+    public GameObject BombPrefab;
+    public GameObject PrincessPrefab;
+    public int numSpheres = 20;
+    public float spawnRadius = 15f;
     public float spawnInterval = 2f;
 
     private Coroutine spawningCoroutine;
@@ -25,9 +27,17 @@ public class Spawner : MonoBehaviour
                 DestroyPreviousSpheres();
                 Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
                 Vector3 spawnPos = transform.position + randomOffset;
-
-                GameObject Mole = Instantiate(spherePrefab, spawnPos, Quaternion.identity);
-                //sphere.AddComponent<SphereClickHandler>();
+                int x = Random.Range(1, 21);
+                Debug.Log(x);
+                if(x>=5 && x<10){
+                    GameObject Bomb = Instantiate(BombPrefab, spawnPos, Quaternion.identity);
+                }
+                else if(x==10){
+                    GameObject Princess = Instantiate(PrincessPrefab, spawnPos, Quaternion.identity);
+                }
+                else{
+                    GameObject Mole = Instantiate(MolePrefab, spawnPos, Quaternion.identity);
+                }
                 yield return new WaitForSeconds(spawnInterval);
             }
             
