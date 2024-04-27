@@ -7,6 +7,8 @@ public class Clicker : MonoBehaviour
 {
     private ARRaycastManager raycastManager;
     public GameObject Mole;
+    public GameObject Princess;
+    public GameObject Bomb;
     void awake(){
         raycastManager = GetComponent<ARRaycastManager>();
     }
@@ -29,12 +31,10 @@ public class Clicker : MonoBehaviour
                         Destroy(hit.collider.gameObject);
                     }
 
-                    // Draw a line to visualize the raycast
                     Debug.DrawLine(ray.origin, hit.point, Color.red, 1.0f);
                 }
                 else
                 {
-                    // Draw a line in the direction of the raycast if it didn't hit anything
                     Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 1.0f);
                 }
             }
