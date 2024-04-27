@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
                 Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
                 Vector3 spawnPos = transform.position + randomOffset;
                 int x = Random.Range(1, 21);
-                Debug.Log(x);
+                //Debug.Log(x);
                 if(x>=5 && x<10){
                     GameObject Bomb = Instantiate(BombPrefab, spawnPos, Quaternion.identity);
                 }
