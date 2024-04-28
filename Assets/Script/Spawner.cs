@@ -9,12 +9,13 @@ public class Spawner : MonoBehaviour
     public GameObject PrincessPrefab;
     public int numSpheres = 20;
     public float spawnRadius = 15f;
-    public float spawnInterval = 2f;
+    public float spawnInterval;
 
     private Coroutine spawningCoroutine;
 
     void Start()
     {
+        spawnInterval = DifState.difficulty;
         spawningCoroutine = StartCoroutine(SpawnSpheresRoutine());
     }
 
