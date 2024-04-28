@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class scenechage : MonoBehaviour
+public class pausemenu : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +15,10 @@ public class scenechage : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Quitgame()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
