@@ -9,11 +9,13 @@ public class Clicker : MonoBehaviour
     public GameObject Mole;
     public GameObject Princess;
     public GameObject Bomb;
+    public Spawner spawner;
     void awake(){
         raycastManager = GetComponent<ARRaycastManager>();
     }
     void Update()
     {
+        
         if (Input.touchCount >0)
         {
             Touch touch = Input.GetTouch(0);
@@ -27,7 +29,7 @@ public class Clicker : MonoBehaviour
                     
                     if (hit.collider.gameObject.CompareTag("Mole"))
                     {
-                       //Debug.Log("Mole was hit!");
+                        spawner.timer = spawner.spawnInterval;
                         Destroy(hit.collider.gameObject);
                     }
 
