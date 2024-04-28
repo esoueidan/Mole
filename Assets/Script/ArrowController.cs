@@ -25,9 +25,5 @@ public class ArrowController : MonoBehaviour
             transform.position = Camera.main.transform.position + Camera.main.transform.forward * distanceFromCamera;
             transform.rotation = rotation;
         }
-        else
-        {
-            gameObject.SetActive(false);
-        }
     }
 }

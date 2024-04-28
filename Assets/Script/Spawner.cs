@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,9 @@ public class Spawner : MonoBehaviour
     public GameObject PrincessPrefab;
     public int numSpheres = 20;
     public float spawnRadius = 15f;
-    public float spawnInterval;
+    public float spawnInterval = 6;
+    public float timer;
+    public bool  isPaused;
 
     private Coroutine spawningCoroutine;
 
@@ -21,8 +23,6 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnSpheresRoutine()
     {
-
-            
             for (int i = 0; i < numSpheres; i++)
             {
                 DestroyPreviousSpheres();
@@ -39,7 +39,12 @@ public class Spawner : MonoBehaviour
                 else{
                     GameObject Mole = Instantiate(MolePrefab, spawnPos, Quaternion.identity);
                 }
-                yield return new WaitForSeconds(spawnInterval);
+                timer = 0;
+                while (timer < spawnInterval)
+                {
+                    timer += Time.deltaTime;
+                    yield return null;
+                }
             }
             
     }
