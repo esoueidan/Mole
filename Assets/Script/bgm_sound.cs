@@ -48,14 +48,11 @@ public class bgm_sound : MonoBehaviour
         // 소리 상태에 따라 버튼 텍스트 변경
         if (isSoundOn)
         {
-            
-            // 소리 재생
             audioSource.PlayOneShot(soundClip);
         }
         else
         {
-            
-            // 소리 중지
+
             audioSource.Stop();
         }
     }
