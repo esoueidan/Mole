@@ -20,12 +20,13 @@ public class Timecontroller : MonoBehaviour
     public string nextSceneName; // 전환할 다음 씬의 이름
     public float delay = 12f; // 전환까지의 딜레이 시간
 
+   
 
     void Start()
     {
         //제한 시간 02:00
-        timeText[0].text = "00";
-        timeText[1].text = "10";
+        timeText[0].text = "01";
+        timeText[1].text = "00";
 
         Invoke("SwitchScene", delay);
     }
@@ -86,7 +87,6 @@ public class Timecontroller : MonoBehaviour
             }
         }
 
-
     }
 
     void ShowGameOverText() //게임 끝났을때 메세지 뛰우는거
@@ -96,7 +96,7 @@ public class Timecontroller : MonoBehaviour
     }
     void SwitchScene() //씬 전환
     {
-        SceneManager.LoadScene("gameoptions");
+        SceneManager.LoadScene("gameoption");
     }
     private void UpdateScoreUI()// 점수
     {
@@ -109,5 +109,5 @@ public class Timecontroller : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
+    
 }

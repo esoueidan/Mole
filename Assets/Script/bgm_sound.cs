@@ -12,48 +12,71 @@ public class bgm_sound : MonoBehaviour
     public AudioClip soundClip; // 재생할 소리 클립
     public Button increaseVolumeButton; // 볼륨을 늘리는 버튼
     public Button decreaseVolumeButton; // 볼륨을 줄이는 버튼
-    public Button soundButton;
-    private bool isSoundOn = true;
+    public Button soundOnButton; // 소리를 켜는 버튼
+    public Button soundOffButton; // 소리를 끄는 버튼
 
+
+    private bool isSoundOn = true;
+    private bool isPlaying = false;
 
     public float volumeChangeAmount = 0.1f; // 볼륨을 변경할 양
 
     void Start()
     {
+        soundOnButton.onClick.AddListener(TurnSoundOn);
+        soundOffButton.onClick.AddListener(TurnSoundOff);
 
-        soundButton.onClick.AddListener(ToggleSound);
+
+        UpdateButtonVisibility();
+
         increaseVolumeButton.onClick.AddListener(IncreaseVolume);
         decreaseVolumeButton.onClick.AddListener(DecreaseVolume);
     }
 
     void IncreaseVolume()
     {
-        
         audioSource.volume = Mathf.Clamp01(audioSource.volume + volumeChangeAmount);
     }
 
     void DecreaseVolume()
     {
-        
         audioSource.volume = Mathf.Clamp01(audioSource.volume - volumeChangeAmount);
     }
 
-
-
     void ToggleSound()
     {
-        // 소리를 켜거나 끔
         isSoundOn = !isSoundOn;
-
-        // 소리 상태에 따라 버튼 텍스트 변경
         if (isSoundOn)
         {
             audioSource.PlayOneShot(soundClip);
         }
         else
         {
-
             audioSource.Stop();
         }
+        UpdateButtonVisibility();
+    }
+
+    void TurnSoundOn()
+    {
+        isSoundOn = true;
+        audioSource.PlayOneShot(soundClip);
+        soundOnButton.gameObject.SetActive(true);
+        soundOffButton.gameObject.SetActive(false);
+    }
+
+    // 소리를 끄는 함수
+    void TurnSoundOff()
+    {
+        isSoundOn = false;
+        audioSource.Stop();
+        soundOnButton.gameObject.SetActive(true);
+        soundOffButton.gameObject.SetActive(false);
+    }
+
+    void UpdateButtonVisibility()
+    {
+        soundOnButton.gameObject.SetActive(!isSoundOn);
+        soundOffButton.gameObject.SetActive(isSoundOn);
     }
 }
