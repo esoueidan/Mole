@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
     private Coroutine spawningCoroutine;
 
     void Start()
-    {
+    {   
         spawnInterval = DifState.difficulty;
         spawningCoroutine = StartCoroutine(SpawnSpheresRoutine());
     }
