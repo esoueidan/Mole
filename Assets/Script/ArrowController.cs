@@ -10,6 +10,8 @@ public class ArrowController : MonoBehaviour
     void Update()
     {
         GameObject mole = GameObject.FindGameObjectWithTag(moleTag);
+        GameObject princess = GameObject.FindGameObjectWithTag("Princess");
+        GameObject bomb = GameObject.FindGameObjectWithTag("Bomb");
 
         if (mole != null)
         {
@@ -22,6 +24,28 @@ public class ArrowController : MonoBehaviour
             rotation *= Quaternion.Euler(0, 95, 0);
 
             // Position arrow in front of camera
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward * distanceFromCamera;
+            transform.rotation = rotation;
+        }
+        else if ( princess != null)
+        {
+            Vector3 direction = princess.transform.position - Camera.main.transform.position;
+
+            Quaternion rotation = Quaternion.LookRotation(direction);
+
+            rotation *= Quaternion.Euler(0, 95, 0);
+
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward * distanceFromCamera;
+            transform.rotation = rotation;
+        }
+        else if (bomb != null)
+        {
+            Vector3 direction = bomb.transform.position - Camera.main.transform.position;
+
+            Quaternion rotation = Quaternion.LookRotation(direction);
+
+            rotation *= Quaternion.Euler(0, 95, 0);
+
             transform.position = Camera.main.transform.position + Camera.main.transform.forward * distanceFromCamera;
             transform.rotation = rotation;
         }

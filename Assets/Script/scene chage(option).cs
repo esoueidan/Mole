@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 public class scenechage : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void suboptionSceneChange()
+    public void MainSceneChange()
     {
-        SceneManager.LoadScene("suboption");
+        SceneManager.LoadScene("MainMenu");
 
     }
     
-    public void gameoptionSceneChange()
+    public void RestartSceneChange()
     {
-        SceneManager.LoadScene("gameoptions");
+        SceneManager.LoadScene("Mode");
     }
     
 

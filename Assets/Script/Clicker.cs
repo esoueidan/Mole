@@ -34,7 +34,18 @@ public class Clicker : MonoBehaviour
                     }
                     if (hit.collider.gameObject.CompareTag("Hourglass"))
                     {
+                        Destroy(hit.collider.gameObject);
                         Debug.Log("hourglass touche");
+                    }
+                    if (hit.collider.gameObject.CompareTag("Princess"))
+                    {
+                        spawner.timer = spawner.spawnInterval;
+                        Destroy(hit.collider.gameObject);
+
+                    }
+                    if (hit.collider.gameObject.CompareTag("Bomb"))
+                    {
+                        spawner.timer = spawner.spawnInterval;
                         Destroy(hit.collider.gameObject);
                     }
 

@@ -11,20 +11,21 @@ public class Timecontroller : MonoBehaviour
 {
     public Text[] timeText;
     public Text gameOverText;
-    float time = 10; // 제한 시간 120초
+    float time = 70; // 제한 시간 120초
     int min, sec;
 
     private int score1 = 0;
     public Text scoreText;
 
     public string nextSceneName; // 전환할 다음 씬의 이름
-    public float delay = 12f; // 전환까지의 딜레이 시간
+    public float delay = 72f; // 전환까지의 딜레이 시간
 
+   
 
     void Start()
     {
         //제한 시간 02:00
-        timeText[0].text = "00";
+        timeText[0].text = "01";
         timeText[1].text = "10";
 
         Invoke("SwitchScene", delay);
@@ -69,7 +70,7 @@ public class Timecontroller : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
 
-                if (hit.collider.CompareTag("ScoreObject")) //tag 설정해줘야됨
+                if (hit.collider.CompareTag("Mole")) //tag 설정해줘야됨
                 {
                                 
                     if (min <= 0 && sec <= 0) 
@@ -83,9 +84,38 @@ public class Timecontroller : MonoBehaviour
                     }
                                       
                 }
+                else if (hit.collider.CompareTag("Princess")) //tag 설정해줘야됨
+                {
+
+                    if (min <= 0 && sec <= 0)
+                    {
+                        UpdateScoreUI();
+
+                    }
+                    else
+                    {
+                        score1 += 5;
+                        UpdateScoreUI();
+                    }
+
+                }
+                else if (hit.collider.CompareTag("Bomb")) //tag 설정해줘야됨
+                {
+
+                    if (min <= 0 && sec <= 0)
+                    {
+                        UpdateScoreUI();
+
+                    }
+                    else
+                    {
+                        score1 -= 3;
+                        UpdateScoreUI();
+                    }
+
+                }
             }
         }
-
 
     }
 
@@ -96,7 +126,7 @@ public class Timecontroller : MonoBehaviour
     }
     void SwitchScene() //씬 전환
     {
-        SceneManager.LoadScene("gameoptions");
+        SceneManager.LoadScene("gameoption");
     }
     private void UpdateScoreUI()// 점수
     {
@@ -109,5 +139,5 @@ public class Timecontroller : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
+    
 }
