@@ -38,6 +38,11 @@ public class Clicker : MonoBehaviour
                         AudioSource.PlayClipAtPoint(sound1, hit.point);
 
                     }
+                    if (hit.collider.gameObject.CompareTag("Hourglass"))
+                    {
+                        Destroy(hit.collider.gameObject);
+                        Debug.Log("hourglass touche");
+                    }
                     if (hit.collider.gameObject.CompareTag("Princess"))
                     {
                         spawner.timer = spawner.spawnInterval;
