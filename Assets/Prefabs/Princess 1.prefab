@@ -155,10 +155,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bde2b741f54b2c9488bee05932c9e499,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 729818673811724362}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bde2b741f54b2c9488bee05932c9e499,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6150482298737630165}
   m_SourcePrefab: {fileID: 100100000, guid: bde2b741f54b2c9488bee05932c9e499, type: 3}
 --- !u!1 &6401276875607941659 stripped
@@ -167,19 +163,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6058624314335665994}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &729818673811724362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6401276875607941659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073f5f12eb175a948bb16f630b33d478, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundClip: {fileID: 8300000, guid: 182185610d089eb4eabb815ff64356f0, type: 3}
 --- !u!135 &6150482298737630165
 SphereCollider:
   m_ObjectHideFlags: 0

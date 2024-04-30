@@ -10,6 +10,10 @@ public class Clicker : MonoBehaviour
     public GameObject Princess;
     public GameObject Bomb;
     public Spawner spawner;
+
+    public AudioClip sound1;
+    public AudioClip sound2;
+    public AudioClip sound3;
     void awake(){
         raycastManager = GetComponent<ARRaycastManager>();
     }
@@ -31,17 +35,21 @@ public class Clicker : MonoBehaviour
                     {
                         spawner.timer = spawner.spawnInterval;
                         Destroy(hit.collider.gameObject);
+                        AudioSource.PlayClipAtPoint(sound1, hit.point);
+
                     }
                     if (hit.collider.gameObject.CompareTag("Princess"))
                     {
                         spawner.timer = spawner.spawnInterval;
                         Destroy(hit.collider.gameObject);
+                        AudioSource.PlayClipAtPoint(sound2, hit.point);
 
                     }
                     if (hit.collider.gameObject.CompareTag("Bomb"))
                     {
                         spawner.timer = spawner.spawnInterval;
                         Destroy(hit.collider.gameObject);
+                        AudioSource.PlayClipAtPoint(sound3, hit.point);
                     }
 
                     Debug.DrawLine(ray.origin, hit.point, Color.red, 1.0f);

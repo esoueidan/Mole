@@ -710,6 +710,9 @@ MonoBehaviour:
     type: 3}
   Bomb: {fileID: 6208435230645144081, guid: 8d81955580b0ac846a692da8f44e87f1, type: 3}
   spawner: {fileID: 709768570}
+  sound1: {fileID: 8300000, guid: 6cb0c2ee8ce06ad4bb81f6d11212191a, type: 3}
+  sound2: {fileID: 8300000, guid: 182185610d089eb4eabb815ff64356f0, type: 3}
+  sound3: {fileID: 8300000, guid: 34889d70af51ee64097957ca0c92ad10, type: 3}
 --- !u!114 &709768570
 MonoBehaviour:
   m_ObjectHideFlags: 0
