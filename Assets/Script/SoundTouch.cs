@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundTouch : MonoBehaviour
+public class SoundTouch1 : MonoBehaviour
 {
     public AudioClip soundClip; // 재생할 소리 클립
     private bool hasPlayedSound = false;
@@ -23,13 +23,14 @@ public class SoundTouch : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
                 if (Physics.Raycast(ray, out hit))
                 {
-                    // 터치한 위치에 Collider가 있는 경우
-                    if (hit.collider.gameObject.CompareTag("ScoreObject"))
+                    
+                    if (hit.collider.gameObject.CompareTag("Mole"))
                     {
-                        // 해당 위치에서 소리를 재생
+                        
                         AudioSource.PlayClipAtPoint(soundClip, hit.point);
-                        hasPlayedSound = true; // 소리를 재생했음을 표시
+                        hasPlayedSound = true; 
                     }
+                    
                 }
             }
         }

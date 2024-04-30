@@ -32,6 +32,17 @@ public class Clicker : MonoBehaviour
                         spawner.timer = spawner.spawnInterval;
                         Destroy(hit.collider.gameObject);
                     }
+                    if (hit.collider.gameObject.CompareTag("Princess"))
+                    {
+                        spawner.timer = spawner.spawnInterval;
+                        Destroy(hit.collider.gameObject);
+
+                    }
+                    if (hit.collider.gameObject.CompareTag("Bomb"))
+                    {
+                        spawner.timer = spawner.spawnInterval;
+                        Destroy(hit.collider.gameObject);
+                    }
 
                     Debug.DrawLine(ray.origin, hit.point, Color.red, 1.0f);
                 }
