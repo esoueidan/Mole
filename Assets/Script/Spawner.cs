@@ -28,21 +28,18 @@ public class Spawner : MonoBehaviour
                 DestroyPreviousSpheres();
                 Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
                 Vector3 spawnPos = transform.position + randomOffset;
-                Vector3 direction = mole.transform.position - Camera.main.transform.position;
-                Quaternion rotation = Quaternion.LookRotation(direction);
-                int x = Random.Range(1, 21);
+                Vector3 direction = spawnPos - Camera.main.transform.position;
+                Quaternion rotation = Quaternion.LookRotation(-direction);
+            int x = Random.Range(1, 21);
                 //Debug.Log(x);
                 if(x>=5 && x<12){
-                    GameObject Bomb = Instantiate(BombPrefab, spawnPos, Quaternion.identity);
-                    Bomb.rotation=rotation;
+                    GameObject Bomb = Instantiate(BombPrefab, spawnPos, rotation);
                 }
                 else if(x==10){
-                    GameObject Princess = Instantiate(PrincessPrefab, spawnPos, Quaternion.identity);
-                    Princess.rotation=rotation;
+                    GameObject Princess = Instantiate(PrincessPrefab, spawnPos, rotation);
                 }
                 else{
-                    GameObject Mole = Instantiate(MolePrefab, spawnPos, Quaternion.identity);
-                    Mole.rotation=rotation;
+                    GameObject Mole = Instantiate(MolePrefab, spawnPos, rotation);
                 }
                 timer = 0;
                 while (timer < spawnInterval)

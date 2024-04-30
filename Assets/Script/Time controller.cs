@@ -20,7 +20,7 @@ public class Timecontroller : MonoBehaviour
     public string nextSceneName; // 전환할 다음 씬의 이름
     public float delay = 72f; // 전환까지의 딜레이 시간
 
-   
+    private bool isTimeStopped = false;
 
     void Start()
     {
@@ -33,33 +33,36 @@ public class Timecontroller : MonoBehaviour
 
     void Update()
     {
-        time -= Time.deltaTime;
-        //timeValue = 0;
-
-        min = (int)time / 60;
-        sec = ((int)time - min * 60) % 60;
-
-        if (min <= 0 && sec <= 0) //gmae end
+        if (!isTimeStopped)
         {
-            timeText[0].text = 0.ToString();
-            timeText[1].text = 0.ToString();
-            ShowGameOverText();
+            time -= Time.deltaTime;
+            //timeValue = 0;
 
+            min = (int)time / 60;
+            sec = ((int)time - min * 60) % 60;
 
-        }
-        else{
-            if (sec >= 60)
+            if (min <= 0 && sec <= 0) //gmae end
             {
-                min += 1;
-                sec -= 60;
+                timeText[0].text = 0.ToString();
+                timeText[1].text = 0.ToString();
+                ShowGameOverText();
+
+
             }
             else
             {
-                timeText[0].text = min.ToString();
-                timeText[1].text = sec.ToString();
+                if (sec >= 60)
+                {
+                    min += 1;
+                    sec -= 60;
+                }
+                else
+                {
+                    timeText[0].text = min.ToString();
+                    timeText[1].text = sec.ToString();
+                }
             }
         }
-
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) //터치했을때 잡는거
         {
@@ -72,48 +75,103 @@ public class Timecontroller : MonoBehaviour
 
                 if (hit.collider.CompareTag("Mole")) //tag 설정해줘야됨
                 {
-                                
-                    if (min <= 0 && sec <= 0) 
+                    if ((!isTimeStopped))
                     {
-                        UpdateScoreUI();
+                        if (min <= 0 && sec <= 0)
+                        {
+                            UpdateScoreUI();
 
-                    }else 
-                    {
-                        score1++;
-                        UpdateScoreUI();
+                        }
+                        else
+                        {
+                            score1++;
+                            UpdateScoreUI();
+                        }
                     }
-                                      
+                    else
+                    {
+                        if (min <= 0 && sec <= 0)
+                        {
+                            UpdateScoreUI();
+
+                        }
+                        else
+                        {
+                            score1++;
+                            UpdateScoreUI();
+                        }
+                    }
                 }
                 else if (hit.collider.CompareTag("Princess")) //tag 설정해줘야됨
                 {
 
-                    if (min <= 0 && sec <= 0)
+                    if ((!isTimeStopped))
                     {
-                        UpdateScoreUI();
+                        if (min <= 0 && sec <= 0)
+                        {
+                            UpdateScoreUI();
 
+                        }
+                        else
+                        {
+                            score1 += 5;
+                            UpdateScoreUI();
+                        }
                     }
                     else
                     {
-                        score1 += 5;
-                        UpdateScoreUI();
+                        if (min <= 0 && sec <= 0)
+                        {
+                            UpdateScoreUI();
+
+                        }
+                        else
+                        {
+                            score1 += 5; 
+                            UpdateScoreUI();
+                        }
                     }
 
                 }
                 else if (hit.collider.CompareTag("Bomb")) //tag 설정해줘야됨
                 {
 
-                    if (min <= 0 && sec <= 0)
+                    if ((!isTimeStopped))
                     {
-                        UpdateScoreUI();
+                        if (min <= 0 && sec <= 0)
+                        {
+                            UpdateScoreUI();
 
+                        }
+                        else
+                        {
+                            score1 -=3;
+                            UpdateScoreUI();
+                        }
                     }
                     else
                     {
-                        score1 -= 3;
-                        UpdateScoreUI();
+                        if (min <= 0 && sec <= 0)
+                        {
+                            UpdateScoreUI();
+
+                        }
+                        else
+                        {
+                            score1 -= 3;
+                            UpdateScoreUI();
+                        }
                     }
 
                 }
+                else if (hit.collider.CompareTag("Hourglass")) // 시간을 멈추는 오브젝트를 터치했다면
+                {
+                    StopTime(); // 시간 멈추기
+                    StartCoroutine(ResumeTimeAfterDelay(50f)); // 5초 후에 시간 다시 시작
+
+                }
+
+
             }
         }
 
@@ -138,6 +196,14 @@ public class Timecontroller : MonoBehaviour
         PlayerPrefs.SetInt("Score", score1);
         PlayerPrefs.Save();
     }
+    void StopTime()
+    {
+        isTimeStopped = true;
+    }
+    IEnumerator ResumeTimeAfterDelay(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        isTimeStopped = false;
+    }
 
-    
 }
