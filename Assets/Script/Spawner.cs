@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
                 Quaternion rotation = Quaternion.LookRotation(-direction);
             int x = Random.Range(1, 21);
                 //Debug.Log(x);
-                if(x>=5 && x<12){
+                if(x>=5 && x<10){
                     GameObject Bomb = Instantiate(BombPrefab, spawnPos, rotation);
                 }
                 else if(x==10){

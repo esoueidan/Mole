@@ -16,6 +16,11 @@ public class scenechage : MonoBehaviour
     {
         SceneManager.LoadScene("Mode");
     }
-    
+
+    public void InstructSceneChange()
+    {
+        SceneManager.LoadScene("Instructions");
+    }
+
 
 }

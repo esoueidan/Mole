@@ -11,6 +11,7 @@ public class Timecontroller : MonoBehaviour
 {
     public Text[] timeText;
     public Text gameOverText;
+    public Text ReadyText;
     float time = 70; // 제한 시간 120초
     int min, sec;
 
@@ -20,6 +21,11 @@ public class Timecontroller : MonoBehaviour
     public string nextSceneName; // 전환할 다음 씬의 이름
     public float delay = 72f; // 전환까지의 딜레이 시간
 
+
+    public Text textToShow;
+    public float displayTime = 5f; // 텍스트를 표시할 시간 (초)
+
+
     private bool isTimeStopped = false;
 
     void Start()
@@ -27,6 +33,8 @@ public class Timecontroller : MonoBehaviour
         //제한 시간 02:00
         timeText[0].text = "01";
         timeText[1].text = "10";
+
+        StartCoroutine(ShowTextFor5Seconds());
 
         Invoke("SwitchScene", delay);
     }
@@ -46,7 +54,7 @@ public class Timecontroller : MonoBehaviour
                 timeText[0].text = 0.ToString();
                 timeText[1].text = 0.ToString();
                 ShowGameOverText();
-
+                
 
             }
             else
@@ -204,6 +212,19 @@ public class Timecontroller : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         isTimeStopped = false;
+    }
+
+    IEnumerator ShowTextFor5Seconds()
+    {
+        // "5초 동안" 텍스트를 활성화
+        ReadyText.gameObject.SetActive(true);
+        ReadyText.text = "ARE YOU READY?";
+
+        // 5초 대기
+        yield return new WaitForSeconds(5f);
+
+        // "5초 동안" 텍스트를 비활성화
+        ReadyText.gameObject.SetActive(false);
     }
 
 }
