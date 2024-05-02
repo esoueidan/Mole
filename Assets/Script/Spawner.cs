@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
     public GameObject PrincessPrefab;
     public int numSpheres = 60;
     public float spawnRadius = 15f;
-    public float spawnInterval = 6;
+    public float spawnInterval;
     public float timer;
     public bool  isPaused;
 
@@ -19,6 +19,11 @@ public class Spawner : MonoBehaviour
     {   
         spawnInterval = DifState.difficulty;
         spawningCoroutine = StartCoroutine(SpawnSpheresRoutine());
+        GameObject HG = GameObject.FindGameObjectWithTag("Hourglass");
+        if (HG != null)
+        {
+            Destroy(HG);
+        }
     }
 
     IEnumerator SpawnSpheresRoutine()
@@ -30,7 +35,7 @@ public class Spawner : MonoBehaviour
                 Vector3 spawnPos = transform.position + randomOffset;
                 Vector3 direction = spawnPos - Camera.main.transform.position;
                 Quaternion rotation = Quaternion.LookRotation(-direction);
-            int x = Random.Range(1, 21);
+                int x = Random.Range(1, 21);
                 //Debug.Log(x);
                 if(x>=5 && x<10){
                     GameObject Bomb = Instantiate(BombPrefab, spawnPos, rotation);
@@ -42,6 +47,7 @@ public class Spawner : MonoBehaviour
                     GameObject Mole = Instantiate(MolePrefab, spawnPos, rotation);
                 }
                 timer = 0;
+                Debug.Log(i);
                 while (timer < spawnInterval)
                 {
                     timer += Time.deltaTime;

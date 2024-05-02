@@ -19,7 +19,7 @@ public class Timecontroller : MonoBehaviour
     public Text scoreText;
 
     public string nextSceneName; // 전환할 다음 씬의 이름
-    public float delay = 72f; // 전환까지의 딜레이 시간
+    public float delay = 3f; // 전환까지의 딜레이 시간
 
 
     public Text textToShow;
@@ -36,7 +36,7 @@ public class Timecontroller : MonoBehaviour
 
         StartCoroutine(ShowTextFor5Seconds());
 
-        Invoke("SwitchScene", delay);
+       
     }
 
     void Update()
@@ -54,8 +54,8 @@ public class Timecontroller : MonoBehaviour
                 timeText[0].text = 0.ToString();
                 timeText[1].text = 0.ToString();
                 ShowGameOverText();
-                
 
+                Invoke("SwitchScene", delay);
             }
             else
             {
@@ -175,7 +175,7 @@ public class Timecontroller : MonoBehaviour
                 else if (hit.collider.CompareTag("Hourglass")) // 시간을 멈추는 오브젝트를 터치했다면
                 {
                     StopTime(); // 시간 멈추기
-                    StartCoroutine(ResumeTimeAfterDelay(50f)); // 5초 후에 시간 다시 시작
+                    StartCoroutine(ResumeTimeAfterDelay(5f)); // 5초 후에 시간 다시 시작
 
                 }
 
@@ -221,7 +221,7 @@ public class Timecontroller : MonoBehaviour
         ReadyText.text = "ARE YOU READY?";
 
         // 5초 대기
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
 
         // "5초 동안" 텍스트를 비활성화
         ReadyText.gameObject.SetActive(false);
